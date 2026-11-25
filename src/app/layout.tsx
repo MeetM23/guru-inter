@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Varela_Round } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const varelaRound = Varela_Round({
+  weight: "400",
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-varela-round",
 });
 
 export const metadata: Metadata = {
-  title: "Guru International | Real Estate Finance & Agro-Commodity Trading",
+  title: "Guru International | Real Estate Finance & Bulk Agro-Commodity Trading",
   description:
-    "Corporate advisory for Industrial & Commercial Real Estate Financing, Government Tender & Possession Matters, and Bulk Agricultural Commodity Trading (Cumin Seeds, Black Gram, Tuwar).",
+    "Institutional capital advisory for commercial assets, SARFAESI possession matters, and bulk supply of verified Cumin Seeds, Black Gram, and Tuwar from Gujarat APMCs.",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -27,8 +28,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} antialiased`}>
-      <body className="min-h-screen bg-[#F7F6F2] text-[#1A1A1A] flex flex-col font-sans">
+    <html lang="en" className={`${varelaRound.variable} ${varelaRound.className} antialiased`}>
+      <body className={`min-h-screen bg-[#F7F6F2] text-[#1A1A1A] flex flex-col ${varelaRound.className}`}>
         {children}
       </body>
     </html>

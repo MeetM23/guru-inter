@@ -21,9 +21,9 @@ export default function Logo({
   // Navbar height: 36–44px desktop, 30–34px mobile.
   // Footer: slightly smaller.
   const heightClasses = {
-    sm: "h-[28px]", // Exact 28px for navbar / compact
-    md: "h-[32px] sm:h-[38px] lg:h-[42px]", // Standard
-    lg: "h-[38px] sm:h-[46px] lg:h-[52px]", // Display / hero
+    sm: "h-[32px]",
+    md: "h-[40px]", // 40px height for primary Navbar
+    lg: "h-[48px]", // Larger display
   };
 
   const src = isWhite ? "/logo/guru-logo-white.svg" : "/logo/guru-logo.svg";

@@ -1,12 +1,16 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Logo from "./Logo";
-import { X } from "lucide-react";
+import InteractiveIcon from "./ui/InteractiveIcon";
+import { X, Menu, ArrowUpRight, Phone, MessageCircle } from "pulsoicon-react";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,12 +26,24 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll when mobile full-screen menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
   const navLinks = [
-    { label: "Property Finance", href: "#property-finance" },
-    { label: "Possession & Tenders", href: "#possession-tender" },
-    { label: "Agro Commodities", href: "#commodities" },
-    { label: "Operations", href: "#ecosystem" },
-    { label: "Inquiries", href: "#inquiry" },
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    { label: "Property Finance", href: "/property-finance" },
+    { label: "Agro Commodities", href: "/agro-commodities" },
+    { label: "Contact", href: "/contact" },
   ];
 
   return (
@@ -39,70 +55,120 @@ export default function Navbar() {
             : "absolute top-0 left-0 bg-transparent border-b-0"
         }`}
       >
-        <div className="max-w-[1200px] mx-auto px-5 md:px-6 h-16 flex items-center justify-between">
-          {/* Left: GURU Logo height 28px */}
+        <div className="max-w-[1280px] mx-auto px-5 md:px-8 h-20 flex items-center justify-between">
+          {/* Left: GURU Logo height 40px */}
           <div className="flex items-center">
-            <Logo size="sm" variant="default" />
+            <Logo size="md" variant="default" />
           </div>
 
-          {/* Center: Duna-style calm editorial nav links */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-[13px] font-normal tracking-[-0.01em] text-[#1A1A1A] opacity-70 hover:opacity-100 transition-opacity duration-150"
-              >
-                {link.label}
-              </a>
-            ))}
+          {/* Center: Nav links 16px, gap 36px, colour at 80% opacity, with active indicator */}
+          <div className="hidden md:flex items-center gap-9">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className={`relative py-1 text-[16px] tracking-normal transition-opacity duration-150 ${
+                    isActive
+                      ? "text-[#1A1A1A] opacity-100"
+                      : "text-[#1A1A1A] opacity-80 hover:opacity-100"
+                  }`}
+                >
+                  <span>{link.label}</span>
+                </Link>
+              );
+            })}
           </div>
 
-          {/* Right: Contact Desk button - black pill #111, white text 13px weight 500 */}
+          {/* Right: Contact Desk button 16px, padding 12px 22px */}
           <div className="hidden md:flex items-center">
-            <a
-              href="#inquiry"
-              className="bg-[#111] hover:bg-[#333] text-white text-[13px] font-medium px-4 py-2 rounded-full transition-colors duration-150 cursor-pointer"
+            <Link
+              href="/contact"
+              className="bg-[#111111] hover:bg-[#333333] text-white text-[16px] px-[22px] py-[12px] rounded-full transition-colors duration-150 min-h-[44px] inline-flex items-center justify-center gap-1.5 cursor-pointer shadow-xs group"
             >
-              Contact Desk
-            </a>
+              <span>Contact Desk</span>
+              <InteractiveIcon
+                icon={ArrowUpRight}
+                mode="hover"
+                size={16}
+                className="opacity-80 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </Link>
           </div>
 
-          {/* Mobile Menu Button - 13px "Menu" button on <=768px */}
+          {/* Mobile Menu Hamburger Button */}
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="text-[13px] font-medium text-[#1A1A1A] px-3 py-1.5 rounded-full hover:bg-black/5 transition-colors"
+              className="p-2 text-[#1A1A1A] hover:bg-black/5 rounded-full min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors cursor-pointer"
               aria-label="Toggle navigation menu"
             >
-              {mobileOpen ? "Close" : "Menu"}
+              <InteractiveIcon
+                icon={mobileOpen ? X : Menu}
+                mode="hover"
+                size={24}
+              />
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Drawer Dropdown */}
+      {/* Mobile Full-Screen Menu (Links 28px) */}
       {mobileOpen && (
-        <div className="fixed inset-x-0 top-16 z-40 bg-[#F7F6F2]/95 backdrop-blur-xl border-b border-black/[0.06] px-5 py-6 md:hidden flex flex-col space-y-4 shadow-sm animate-duna-fade-up">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
+        <div className="fixed inset-0 z-50 bg-[#F7F6F2] md:hidden flex flex-col justify-between px-6 pt-6 pb-12 animate-duna-fade-up overflow-y-auto">
+          {/* Header row in mobile menu */}
+          <div className="flex items-center justify-between h-16">
+            <Logo size="md" variant="default" onClick={() => setMobileOpen(false)} />
+            <button
               onClick={() => setMobileOpen(false)}
-              className="text-[14px] font-normal text-[#1A1A1A] py-1"
+              className="p-2 text-[#1A1A1A] rounded-full hover:bg-black/5 min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer"
+              aria-label="Close menu"
             >
-              {link.label}
-            </a>
-          ))}
-          <div className="pt-2 border-t border-black/[0.06] flex items-center justify-between">
-            <a
-              href="#inquiry"
+              <InteractiveIcon icon={X} mode="hover" size={26} />
+            </button>
+          </div>
+
+          {/* Navigation Links at 28px */}
+          <div className="my-auto py-8 flex flex-col space-y-6">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className={`text-[28px] tracking-tight transition-opacity ${
+                    isActive ? "text-[#111111] opacity-100" : "text-[#1A1A1A] opacity-75 hover:opacity-100"
+                  }`}
+                >
+                  <span className="flex items-center gap-3">
+                    {link.label}
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Footer CTA & Info in Mobile Menu */}
+          <div className="pt-6 border-t border-black/10 flex flex-col gap-4">
+            <Link
+              href="/contact"
               onClick={() => setMobileOpen(false)}
-              className="inline-block bg-[#111] text-white text-[13px] font-medium px-4 py-2 rounded-full text-center"
+              className="w-full bg-[#111111] text-white text-[18px] py-4 rounded-full text-center min-h-[44px] flex items-center justify-center"
             >
               Contact Desk
-            </a>
-            <span className="text-xs text-[#1A1A1A]/60">+91 94281 11775</span>
+            </Link>
+            <div className="flex items-center justify-between text-[15px] text-[#1A1A1A]/70 pt-1">
+              <a href="tel:+919428111775" className="hover:text-[#111111] inline-flex items-center gap-1.5">
+                <InteractiveIcon icon={Phone} mode="hover" size={15} />
+                <span>+91 94281 11775</span>
+              </a>
+              <a href="https://wa.me/919106571342" target="_blank" rel="noopener noreferrer" className="hover:text-[#111111] inline-flex items-center gap-1.5">
+                <InteractiveIcon icon={MessageCircle} mode="hover" size={15} />
+                <span>WhatsApp</span>
+              </a>
+            </div>
           </div>
         </div>
       )}

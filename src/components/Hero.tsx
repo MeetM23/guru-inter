@@ -1,10 +1,13 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
+import InteractiveIcon from "./ui/InteractiveIcon";
+import { Activity, ArrowRight, Calendar } from "pulsoicon-react";
 
 export default function Hero() {
   return (
-    <section className="relative w-full overflow-hidden h-auto md:h-[820px] min-h-[680px] bg-[#F7F6F2]">
+    <section className="relative w-full overflow-hidden h-auto md:h-[860px] min-h-[720px] bg-[#F7F6F2]">
       {/* Background Landscape Illustration */}
       <img
         src="/hero-bg.png"
@@ -17,11 +20,11 @@ export default function Hero() {
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 60% 45% at 50% 52%, rgba(247,246,242,0.75) 0%, rgba(247,246,242,0) 70%)",
+            "radial-gradient(ellipse 65% 50% at 50% 50%, rgba(247,246,242,0.75) 0%, rgba(247,246,242,0) 70%)",
         }}
       />
 
-      {/* Overlay 2: Seamless bottom dissolve into #F7F6F2 with no hard edge or divider */}
+      {/* Overlay 2: Seamless bottom dissolve into #F7F6F2 with no hard edge */}
       <div
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
@@ -30,60 +33,64 @@ export default function Hero() {
         }}
       />
 
-      {/* Content Block: centered, starting padding-top 300px on desktop */}
-      <div className="relative z-10 max-w-[840px] mx-auto px-5 text-center pt-[160px] pb-[120px] md:pt-[300px] md:pb-0 flex flex-col items-center">
-        {/* a) Eyebrow badge */}
+      {/* Content Block: centered, matching reference image positioning */}
+      <div className="relative z-10 max-w-[1040px] mx-auto px-5 text-center pt-[150px] pb-[100px] md:pt-[270px] md:pb-0 flex flex-col items-center">
+        {/* a) Eyebrow badge: exact compact size matching reference image */}
         <div className="hero-animate-badge mb-5">
-          <a
-            href="#inquiry"
-            className="inline-flex items-center gap-1.5 px-3 py-[5px] rounded-full text-[11px] font-medium tracking-normal text-white bg-[#111111]/85 hover:bg-[#111111] transition-colors duration-150 cursor-pointer"
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[13px] text-white bg-[#111111]/90 hover:bg-[#111111] transition-colors duration-150 cursor-pointer shadow-xs min-h-[36px]"
           >
+            {/* Looping pulse icon for live physical operations desk */}
+            <InteractiveIcon
+              icon={Activity}
+              mode="loop"
+              intervalMs={4000}
+              size={13}
+              className="text-[#C28F43] shrink-0"
+            />
             <span>Western India Operations · Gujarat Mandi &amp; Property Desk</span>
-            <svg
-              width="10"
-              height="10"
-              viewBox="0 0 12 12"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              className="opacity-70"
-            >
-              <path d="M2.5 6h7m0 0l-3-3m3 3l-3 3" />
-            </svg>
-          </a>
+            {/* Interactive hover arrow that glides forward when the badge is hovered */}
+            <InteractiveIcon
+              icon={ArrowRight}
+              mode="hover"
+              size={12}
+              className="opacity-80 shrink-0"
+            />
+          </Link>
         </div>
 
-        {/* b) Headline (h1) - exactly 2 lines on desktop matching reference */}
+        {/* b) Headline: font size matching reference image (~58px–60px desktop) managing in exactly 2 lines */}
         <h1
-          className="hero-animate-h1 text-[#111111] font-normal leading-[1.04] tracking-[-0.045em] max-w-[800px] mx-auto mb-[18px]"
-          style={{ fontSize: "clamp(32px, 3.9vw, 56px)" }}
+          className="hero-animate-h1 text-[#111111] tracking-[-0.015em] leading-[1.12] max-w-[1000px] mx-auto mb-4 text-center"
+          style={{ fontSize: "clamp(32px, 4.2vw, 58px)" }}
         >
-          <span className="block">Industrial real estate finance</span>
-          <span className="block">&amp; bulk agro-commodity trade.</span>
+          <span className="block whitespace-normal sm:whitespace-nowrap">Industrial real estate finance</span>
+          <span className="block whitespace-normal sm:whitespace-nowrap">&amp; bulk agro-commodity trade.</span>
         </h1>
 
-        {/* c) Sub-copy (p) */}
-        <p className="hero-animate-p text-[14px] md:text-[15px] leading-[1.5] font-normal tracking-[-0.005em] text-[#1A1A1A]/65 max-w-[440px] mx-auto mb-7">
+        {/* c) Sub-copy: 16.5px, max-width 620px, breaking into 3 clean lines matching reference */}
+        <p className="hero-animate-p text-[15px] md:text-[16.5px] leading-[1.6] tracking-normal text-[#1A1A1A]/75 max-w-[620px] mx-auto mb-7">
           Structuring institutional capital for commercial assets, resolving possession
           and government tender matters, and supplying verified Cumin Seeds, Black Gram
           and Tuwar.
         </p>
 
-        {/* d) CTA, ONE button only, like Duna */}
+        {/* d) CTA: Single black pill button matching reference image */}
         <div className="hero-animate-cta flex flex-col items-center">
-          <a
-            href="#inquiry"
-            className="inline-flex items-center justify-center bg-[#111111] hover:bg-[#333333] text-white text-[13px] font-medium px-[18px] py-[10px] rounded-full transition-colors duration-150 cursor-pointer shadow-xs"
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center gap-2 bg-[#111111] hover:bg-[#333333] text-white text-[16px] px-7 py-3.5 rounded-full transition-colors duration-150 min-h-[44px] cursor-pointer shadow-sm group"
           >
-            Schedule Consultation
-          </a>
-
-          <a
-            href="tel:+919428111775"
-            className="mt-3.5 text-[13px] font-normal text-[#1A1A1A]/60 hover:text-[#1A1A1A] transition-colors"
-          >
-            Direct: +91 94281 11775
-          </a>
+            {/* Interactive calendar icon that flips/lifts its rings on button hover */}
+            <InteractiveIcon
+              icon={Calendar}
+              mode="hover"
+              size={17}
+              className="text-white/90"
+            />
+            <span>Schedule Consultation</span>
+          </Link>
         </div>
       </div>
     </section>

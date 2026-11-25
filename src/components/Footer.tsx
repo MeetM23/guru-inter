@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
-import Logo from "./Logo";
-import { MessageCircle, Phone, Mail, ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import InteractiveIcon from "./ui/InteractiveIcon";
+import { MessageCircle, Phone, Mail, ArrowUpRight } from "pulsoicon-react";
 
 export default function Footer() {
   return (
@@ -19,159 +20,160 @@ export default function Footer() {
       {/* Atmospheric vignette over the sky for pristine text readability */}
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#2B545E]/85 via-black/20 to-black/65 pointer-events-none" />
 
-      {/* Top 6 Navigation Columns - Elegant spacing in the sky (pt-28 sm:pt-32 lg:pt-36) so it never conflicts with the navbar */}
-      <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-12 pt-28 sm:pt-32 lg:pt-36">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 sm:gap-8 lg:gap-10">
+      {/* Top 6 Navigation Columns */}
+      <div className="relative z-10 max-w-[1280px] mx-auto w-full px-5 md:px-8 pt-28 sm:pt-32 lg:pt-36">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-10">
           {/* Column 1: Property Finance */}
           <div>
-            <h4 className="font-semibold text-white text-[16px] sm:text-[18px] mb-4 sm:mb-5 tracking-tight">
+            <h4 className="text-[16px] text-white/55 tracking-[0.06em] uppercase mb-4 sm:mb-5">
               Property Finance
             </h4>
-            <ul className="space-y-3 text-[14px] sm:text-[15px] text-white/90 font-normal">
+            <ul className="text-[17px] leading-[2] text-white/90">
               <li>
-                <a href="#property-finance" className="hover:text-white hover:translate-x-0.5 transition-all inline-block">
+                <Link href="/property-finance#term-loans" className="hover:text-white transition-colors block">
                   Industrial Term Loans
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#property-finance" className="hover:text-white hover:translate-x-0.5 transition-all inline-block">
+                <Link href="/property-finance#commercial-mortgages" className="hover:text-white transition-colors block">
                   Commercial Mortgages
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#property-finance" className="hover:text-white hover:translate-x-0.5 transition-all inline-block">
+                <Link href="/property-finance#lrd" className="hover:text-white transition-colors block">
                   Lease Rental Discounting
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#property-finance" className="hover:text-white hover:translate-x-0.5 transition-all inline-block">
+                <Link href="/property-finance#debt-syndication" className="hover:text-white transition-colors block">
                   Factory Debt Syndication
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
 
           {/* Column 2: Possession & Tenders */}
           <div>
-            <h4 className="font-semibold text-white text-[16px] sm:text-[18px] mb-4 sm:mb-5 tracking-tight">
+            <h4 className="text-[16px] text-white/55 tracking-[0.06em] uppercase mb-4 sm:mb-5">
               Possession &amp; Tenders
             </h4>
-            <ul className="space-y-3 text-[14px] sm:text-[15px] text-white/90 font-normal">
+            <ul className="text-[17px] leading-[2] text-white/90">
               <li>
-                <a href="#possession-tender" className="hover:text-white hover:translate-x-0.5 transition-all inline-block">
+                <Link href="/property-finance#sarfaesi" className="hover:text-white transition-colors block">
                   SARFAESI Resolutions
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#possession-tender" className="hover:text-white hover:translate-x-0.5 transition-all inline-block">
+                <Link href="/property-finance#tender-auctions" className="hover:text-white transition-colors block">
                   Govt. Tender Auctions
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#possession-tender" className="hover:text-white hover:translate-x-0.5 transition-all inline-block">
+                <Link href="/property-finance#dm-court-orders" className="hover:text-white transition-colors block">
                   DM / Court Orders
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#possession-tender" className="hover:text-white hover:translate-x-0.5 transition-all inline-block">
+                <Link href="/property-finance#title-tsr" className="hover:text-white transition-colors block">
                   30-Year Title TSR
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
 
           {/* Column 3: Agro Commodities */}
           <div>
-            <h4 className="font-semibold text-white text-[16px] sm:text-[18px] mb-4 sm:mb-5 tracking-tight">
+            <h4 className="text-[16px] text-white/55 tracking-[0.06em] uppercase mb-4 sm:mb-5">
               Agro Commodities
             </h4>
-            <ul className="space-y-3 text-[14px] sm:text-[15px] text-white/90 font-normal">
+            <ul className="text-[17px] leading-[2] text-white/90">
               <li>
-                <a href="#commodities" className="hover:text-white hover:translate-x-0.5 transition-all inline-block">
-                  Cumin Seeds (Sortex 99.5%)
-                </a>
+                <Link href="/agro-commodities#cumin-seeds" className="hover:text-white transition-colors block">
+                  Cumin Seeds (99.5%)
+                </Link>
               </li>
               <li>
-                <a href="#commodities" className="hover:text-white hover:translate-x-0.5 transition-all inline-block">
-                  Black Gram (Urad Whole/Split)
-                </a>
+                <Link href="/agro-commodities#black-gram" className="hover:text-white transition-colors block">
+                  Black Gram (Urad)
+                </Link>
               </li>
               <li>
-                <a href="#commodities" className="hover:text-white hover:translate-x-0.5 transition-all inline-block">
-                  Tuwar Dal (Fatka Grade)
-                </a>
+                <Link href="/agro-commodities#tuwar-dal" className="hover:text-white transition-colors block">
+                  Tuwar Dal (Fatka)
+                </Link>
               </li>
               <li>
-                <a href="#commodities" className="hover:text-white hover:translate-x-0.5 transition-all inline-block">
+                <Link href="/agro-commodities#dispatch" className="hover:text-white transition-colors block">
                   Bulk APMC Dispatch
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
 
           {/* Column 4: Sourcing Hubs */}
           <div>
-            <h4 className="font-semibold text-white text-[16px] sm:text-[18px] mb-4 sm:mb-5 tracking-tight">
+            <h4 className="text-[16px] text-white/55 tracking-[0.06em] uppercase mb-4 sm:mb-5">
               Operating Hubs
             </h4>
-            <ul className="space-y-3 text-[14px] sm:text-[15px] text-white/90 font-normal">
+            <ul className="text-[17px] leading-[2] text-white/90">
               <li>
-                <span className="text-white/90">Gujarat Industrial Estates</span>
+                <span className="text-white/85">Gujarat Industrial Estates</span>
               </li>
               <li>
-                <span className="text-white/90">APMC Mandi Unjha</span>
+                <span className="text-white/85">APMC Mandi Unjha</span>
               </li>
               <li>
-                <span className="text-white/90">Gondal &amp; Rajkot Yards</span>
+                <span className="text-white/85">Gondal &amp; Rajkot Yards</span>
               </li>
               <li>
-                <span className="text-white/90">Pan-India Logistics</span>
+                <span className="text-white/85">Pan-India Logistics</span>
               </li>
             </ul>
           </div>
 
           {/* Column 5: Company */}
           <div>
-            <h4 className="font-semibold text-white text-[16px] sm:text-[18px] mb-4 sm:mb-5 tracking-tight">
+            <h4 className="text-[16px] text-white/55 tracking-[0.06em] uppercase mb-4 sm:mb-5">
               Company
             </h4>
-            <ul className="space-y-3 text-[14px] sm:text-[15px] text-white/90 font-normal">
+            <ul className="text-[17px] leading-[2] text-white/90">
               <li>
-                <a href="#ecosystem" className="hover:text-white hover:translate-x-0.5 transition-all inline-block">
+                <Link href="/about" className="hover:text-white transition-colors block">
                   About the Firm
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#ecosystem" className="hover:text-white hover:translate-x-0.5 transition-all inline-block">
+                <Link href="/about#principles" className="hover:text-white transition-colors block">
                   Operating Principles
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#inquiry" className="hover:text-white hover:translate-x-0.5 transition-all inline-block">
+                <Link href="/contact" className="hover:text-white transition-colors block">
                   Direct Mandate Desk
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#inquiry" className="hover:text-white hover:translate-x-0.5 transition-all inline-block">
-                  Client Verification
-                </a>
+                <Link href="/about#values" className="hover:text-white transition-colors block">
+                  Core Values
+                </Link>
               </li>
             </ul>
           </div>
 
           {/* Column 6: Direct Desk */}
           <div>
-            <h4 className="font-semibold text-white text-[16px] sm:text-[18px] mb-4 sm:mb-5 tracking-tight">
+            <h4 className="text-[16px] text-white/55 tracking-[0.06em] uppercase mb-4 sm:mb-5">
               Direct Desk
             </h4>
-            <ul className="space-y-3 text-[14px] sm:text-[15px] text-white/90 font-normal">
+            <ul className="text-[17px] leading-[2] text-white/90">
               <li>
                 <a
                   href="tel:+919428111775"
-                  className="hover:text-white transition-colors inline-flex items-center gap-1 font-medium"
+                  className="hover:text-white transition-colors inline-flex items-center gap-2 group"
                 >
+                  <InteractiveIcon icon={Phone} mode="hover" size={16} className="opacity-80" />
                   <span>+91 94281 11775</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 opacity-80" />
+                  <InteractiveIcon icon={ArrowUpRight} mode="hover" size={15} className="opacity-75 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
               </li>
               <li>
@@ -179,71 +181,76 @@ export default function Footer() {
                   href="https://wa.me/919106571342"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors inline-flex items-center gap-1 font-medium"
+                  className="hover:text-white transition-colors inline-flex items-center gap-2 group"
                 >
+                  <InteractiveIcon icon={MessageCircle} mode="hover" size={16} className="opacity-80" />
                   <span>WhatsApp: 91065 71342</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 opacity-80" />
+                  <InteractiveIcon icon={ArrowUpRight} mode="hover" size={15} className="opacity-75 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
               </li>
               <li>
                 <a
                   href="mailto:jadavnaresh1982@gmail.com"
-                  className="hover:text-white transition-colors block text-xs break-all pt-1 opacity-80"
+                  className="hover:text-white transition-colors inline-flex items-center gap-2 text-[15px] break-all pt-1 opacity-80 hover:opacity-100 group"
                 >
-                  jadavnaresh1982@gmail.com
+                  <InteractiveIcon icon={Mail} mode="hover" size={16} className="shrink-0" />
+                  <span>jadavnaresh1982@gmail.com</span>
                 </a>
+              </li>
+              <li className="pt-2 text-[14px] leading-snug text-white/75">
+                17, Yogiraj Complex, At &amp; Ta. Mandal, Dist. Ahmedabad - 382130, Gujarat
               </li>
             </ul>
           </div>
         </div>
       </div>
 
-      {/* Spacious Middle Canvas (Allows the river, valley, and mountains to show beautifully) */}
-      <div className="flex-1 min-h-[160px] sm:min-h-[240px] relative z-10" />
+      {/* Spacious Middle Canvas */}
+      <div className="flex-1 min-h-[160px] sm:min-h-[220px] relative z-10" />
 
-      {/* Bottom Bar: Overlaid over the bottom landscape with clean readable typography */}
-      <div className="relative z-10 w-full px-6 sm:px-12 pb-8 pt-4">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between text-[13px] sm:text-[14px] text-white/95 gap-4">
+      {/* Bottom Bar: Copyright and Links */}
+      <div className="relative z-10 w-full px-5 md:px-8 pb-8 pt-4">
+        <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row items-center justify-between text-[14px] sm:text-[15px] text-white/95 gap-4">
           {/* Left: Copyright & Legal links */}
           <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-center md:text-left">
-            <span className="font-semibold text-white">&copy; Guru 2026</span>
-            <a href="#inquiry" className="hover:text-white transition-colors underline-offset-4 hover:underline">
+            <span className="text-white">&copy; Guru International 2026</span>
+            <Link href="/about#principles" className="hover:text-white transition-colors underline-offset-4 hover:underline">
               Statutory Due Diligence
-            </a>
-            <a href="#inquiry" className="hover:text-white transition-colors underline-offset-4 hover:underline">
+            </Link>
+            <Link href="/contact" className="hover:text-white transition-colors underline-offset-4 hover:underline">
               Privacy Policy
-            </a>
-            <a href="#inquiry" className="hover:text-white transition-colors underline-offset-4 hover:underline">
+            </Link>
+            <Link href="/contact" className="hover:text-white transition-colors underline-offset-4 hover:underline">
               Terms of Supply
-            </a>
+            </Link>
           </div>
 
           {/* Right: Direct Desk Action */}
           <div className="flex items-center gap-3">
-            <span className="text-white/85 text-xs sm:text-[13px] hidden sm:inline">Connect with our desk:</span>
-            <div className="flex items-center gap-2.5">
+            <span className="text-white/80 text-[14px] hidden sm:inline">Connect with our desk:</span>
+            <div className="flex items-center gap-3">
               <a
                 href="https://wa.me/919106571342"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-white/20 hover:bg-white/35 backdrop-blur-md flex items-center justify-center text-white transition-all duration-200 shadow-xs"
+                className="w-11 h-11 rounded-full bg-white/20 hover:bg-white/35 backdrop-blur-md flex items-center justify-center text-white transition-all duration-200 shadow-xs min-h-[44px] min-w-[44px] cursor-pointer"
                 title="WhatsApp Us"
               >
-                <MessageCircle className="w-4 h-4" />
+                <InteractiveIcon icon={MessageCircle} mode="hover" size={20} />
               </a>
               <a
                 href="tel:+919428111775"
-                className="w-9 h-9 rounded-full bg-white/20 hover:bg-white/35 backdrop-blur-md flex items-center justify-center text-white transition-all duration-200 shadow-xs"
+                className="w-11 h-11 rounded-full bg-white/20 hover:bg-white/35 backdrop-blur-md flex items-center justify-center text-white transition-all duration-200 shadow-xs min-h-[44px] min-w-[44px] cursor-pointer"
                 title="Call Desk"
               >
-                <Phone className="w-4 h-4" />
+                <InteractiveIcon icon={Phone} mode="hover" size={20} />
               </a>
               <a
                 href="mailto:jadavnaresh1982@gmail.com"
-                className="w-9 h-9 rounded-full bg-white/20 hover:bg-white/35 backdrop-blur-md flex items-center justify-center text-white transition-all duration-200 shadow-xs"
+                className="w-11 h-11 rounded-full bg-white/20 hover:bg-white/35 backdrop-blur-md flex items-center justify-center text-white transition-all duration-200 shadow-xs min-h-[44px] min-w-[44px] cursor-pointer"
                 title="Email Us"
               >
-                <Mail className="w-4 h-4" />
+                <InteractiveIcon icon={Mail} mode="hover" size={20} />
               </a>
             </div>
           </div>

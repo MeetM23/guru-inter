@@ -1,15 +1,31 @@
 "use client";
 
-import React, { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import InteractiveIcon from "./ui/InteractiveIcon";
+import { ArrowUpRight, MessageCircle, ArrowRight, Building2, Scale } from "pulsoicon-react";
 
-export default function InquirySection() {
-  const [division, setDivision] = useState<"property" | "agro">("property");
+interface InquirySectionProps {
+  defaultDivision?: "property" | "agro";
+  isFullPage?: boolean;
+}
+
+export default function InquirySection({
+  defaultDivision = "property",
+  isFullPage = false,
+}: InquirySectionProps) {
+  const [division, setDivision] = useState<"property" | "agro">(defaultDivision);
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [requirement, setRequirement] = useState("");
+
+  useEffect(() => {
+    if (defaultDivision) {
+      setDivision(defaultDivision);
+    }
+  }, [defaultDivision]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,174 +45,209 @@ export default function InquirySection() {
   };
 
   return (
-    <section id="inquiry" className="py-20 bg-[#F7F7F5] border-b border-[#E5E3DC]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-8">
-        {/* Large Warm Parchment Card */}
-        <div className="bg-[#EFECE6] border border-[#E0DCD3] rounded-3xl p-8 sm:p-12 shadow-[0_4px_25px_rgba(23,16,13,0.03)] transition-all duration-300">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+    <section id="inquiry" className="py-[88px] md:py-[140px] bg-[#F7F6F2] border-b border-[#E5E3DC]/80">
+      <div className="max-w-[1280px] mx-auto px-5 md:px-8">
+        {/* Large Warm Parchment Card: padding 40px, radius 24px */}
+        <div className="bg-[#EFECE6] border border-[#E0DCD3] rounded-[24px] p-7 md:p-12 shadow-[0_4px_25px_rgba(23,16,13,0.03)]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
             {/* Left Column: Narrative & Contact details */}
             <div className="lg:col-span-5 space-y-6">
-              <div className="text-[10px] duna-mono uppercase text-[#898683]">
-                INQUIRY DESK &middot; WESTERN INDIA
+              <div className="text-[16px] label-uppercase text-[#1A1A1A]/60 tracking-[0.06em]">
+                INQUIRY DESK · WESTERN INDIA
               </div>
 
-              <h2 className="text-3xl sm:text-4xl font-normal text-[#1A1816] tracking-[-0.035em] leading-[1.15]">
+              <h2
+                className="text-[#1A1A1A] tracking-[-0.015em] leading-[1.1]"
+                style={{ fontSize: "var(--text-2xl)" }}
+              >
                 A conversation. <br />
                 A clear next step.
               </h2>
 
-              <p className="text-xs sm:text-[13px] text-[#5C5854] leading-[1.65] font-normal tracking-[-0.01em]">
+              <p className="text-[18px] text-[#1A1A1A]/75 leading-[1.65]">
                 Tell us what you&apos;re working on. Our desk connects your property mandate or commodity requirement with the right next conversation.
               </p>
 
-              <div className="pt-4 space-y-4 text-xs">
+              <div className="pt-4 space-y-5">
                 <div>
-                  <div className="text-[10px] duna-mono uppercase text-[#898683] mb-1">
+                  <div className="text-[14px] label-uppercase text-[#1A1A1A]/60 mb-1 tracking-[0.06em]">
                     DIRECT DESK
                   </div>
                   <a
                     href="tel:+919428111775"
-                    className="text-sm font-semibold text-[#1A1816] hover:underline inline-flex items-center gap-1 transition-colors"
+                    className="text-[18px] text-[#1A1A1A] hover:underline inline-flex items-center gap-1.5 transition-colors min-h-[44px]"
                   >
                     <span>+91 94281 11775</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
+                    <ArrowUpRight className="w-4 h-4 opacity-75" />
                   </a>
                 </div>
 
                 <div>
-                  <div className="text-[10px] duna-mono uppercase text-[#898683] mb-1">
+                  <div className="text-[14px] label-uppercase text-[#1A1A1A]/60 mb-1 tracking-[0.06em]">
                     WHATSAPP
                   </div>
                   <a
                     href="https://wa.me/919106571342"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm font-semibold text-[#1A1816] hover:underline inline-flex items-center gap-1 transition-colors"
+                    className="text-[18px] text-[#1A1A1A] hover:underline inline-flex items-center gap-1.5 transition-colors min-h-[44px]"
                   >
                     <span>+91 91065 71342</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
+                    <ArrowUpRight className="w-4 h-4 opacity-75" />
                   </a>
                 </div>
+
+                {!isFullPage && (
+                  <div className="pt-3">
+                    <Link
+                      href="/contact"
+                      className="text-[17px] text-[#111111] underline underline-offset-4 hover:opacity-80 inline-flex items-center gap-1 min-h-[44px]"
+                    >
+                      <span>Full contact page &rarr;</span>
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
 
-            {/* Right Column: Form */}
+            {/* Right Column: Form (inputs 18px, height 56px, radius 14px, toggle tabs 16px, height 48px) */}
             <div className="lg:col-span-7">
-              <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Choose division label & switcher */}
+              <form onSubmit={handleSubmit} className="space-y-5">
+                {/* Division Tabs */}
                 <div>
-                  <label className="block text-xs font-normal text-[#1A1816] mb-2 tracking-tight">
+                  <label className="block text-[16px] text-[#1A1A1A]/75 mb-2.5">
                     Choose your division
                   </label>
-                  <div className="bg-[#E4E0D7] p-1 rounded-full flex items-center max-w-md">
+                  <div className="grid grid-cols-2 gap-3 p-1.5 bg-[#E2DED5] rounded-full">
                     <button
                       type="button"
                       onClick={() => setDivision("property")}
-                      className={`flex-1 py-2 text-xs font-medium rounded-full transition-all duration-300 duna-ease ${
+                      className={`h-[48px] rounded-full text-[16px] transition-all min-h-[44px] flex items-center justify-center gap-2 cursor-pointer ${
                         division === "property"
-                          ? "bg-white text-[#1A1816] shadow-xs"
-                          : "text-[#6B6864] hover:text-[#1A1816]"
+                          ? "bg-white text-[#111111] shadow-xs"
+                          : "text-[#1A1A1A]/70 hover:text-[#111111]"
                       }`}
                     >
-                      Property &amp; Finance
+                      <InteractiveIcon
+                        icon={Building2}
+                        mode="active"
+                        active={division === "property"}
+                        size={17}
+                      />
+                      <span>Property &amp; Finance</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => setDivision("agro")}
-                      className={`flex-1 py-2 text-xs font-medium rounded-full transition-all duration-300 duna-ease ${
+                      className={`h-[48px] rounded-full text-[16px] transition-all min-h-[44px] flex items-center justify-center gap-2 cursor-pointer ${
                         division === "agro"
-                          ? "bg-white text-[#1A1816] shadow-xs"
-                          : "text-[#6B6864] hover:text-[#1A1816]"
+                          ? "bg-white text-[#111111] shadow-xs"
+                          : "text-[#1A1A1A]/70 hover:text-[#111111]"
                       }`}
                     >
-                      Agro Commodities
+                      <InteractiveIcon
+                        icon={Scale}
+                        mode="active"
+                        active={division === "agro"}
+                        size={17}
+                      />
+                      <span>Agro Commodities</span>
                     </button>
                   </div>
                 </div>
 
-                {/* Row 1: Name & Company */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
+                {/* Name & Company */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[11px] font-normal text-[#4D4846] mb-1">
+                    <label className="block text-[16px] text-[#1A1A1A]/75 mb-1.5">
                       Your name
                     </label>
                     <input
                       type="text"
-                      placeholder="First name"
+                      required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-white/90 border border-[#DBD6CB] text-xs text-[#1A1816] placeholder-[#A8A49C] focus:outline-none focus:border-[#1A1816] focus:bg-white transition-all duration-200"
+                      placeholder="Full name"
+                      className="w-full h-[56px] px-4 rounded-[14px] bg-white border border-[#D5D0C5] text-[18px] text-[#1A1A1A] placeholder-[#1A1A1A]/40 focus:outline-none focus:border-[#111111] transition-colors"
                     />
                   </div>
                   <div>
-                    <label className="block text-[11px] font-normal text-[#4D4846] mb-1">
-                      Company / organization
+                    <label className="block text-[16px] text-[#1A1A1A]/75 mb-1.5">
+                      Company / organisation
                     </label>
                     <input
                       type="text"
-                      placeholder="Organization name"
                       value={company}
                       onChange={(e) => setCompany(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-white/90 border border-[#DBD6CB] text-xs text-[#1A1816] placeholder-[#A8A49C] focus:outline-none focus:border-[#1A1816] focus:bg-white transition-all duration-200"
+                      placeholder="Organisation name"
+                      className="w-full h-[56px] px-4 rounded-[14px] bg-white border border-[#D5D0C5] text-[18px] text-[#1A1A1A] placeholder-[#1A1A1A]/40 focus:outline-none focus:border-[#111111] transition-colors"
                     />
                   </div>
                 </div>
 
-                {/* Row 2: Phone & Email */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {/* Phone & Email */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[11px] font-normal text-[#4D4846] mb-1">
+                    <label className="block text-[16px] text-[#1A1A1A]/75 mb-1.5">
                       Phone number
                     </label>
                     <input
                       type="tel"
-                      placeholder="+91"
+                      required
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-white/90 border border-[#DBD6CB] text-xs text-[#1A1816] placeholder-[#A8A49C] focus:outline-none focus:border-[#1A1816] focus:bg-white transition-all duration-200"
+                      placeholder="+91"
+                      className="w-full h-[56px] px-4 rounded-[14px] bg-white border border-[#D5D0C5] text-[18px] text-[#1A1A1A] placeholder-[#1A1A1A]/40 focus:outline-none focus:border-[#111111] transition-colors"
                     />
                   </div>
                   <div>
-                    <label className="block text-[11px] font-normal text-[#4D4846] mb-1">
+                    <label className="block text-[16px] text-[#1A1A1A]/75 mb-1.5">
                       Email address
                     </label>
                     <input
                       type="email"
-                      placeholder="you@company.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-white/90 border border-[#DBD6CB] text-xs text-[#1A1816] placeholder-[#A8A49C] focus:outline-none focus:border-[#1A1816] focus:bg-white transition-all duration-200"
+                      placeholder="you@company.com"
+                      className="w-full h-[56px] px-4 rounded-[14px] bg-white border border-[#D5D0C5] text-[18px] text-[#1A1A1A] placeholder-[#1A1A1A]/40 focus:outline-none focus:border-[#111111] transition-colors"
                     />
                   </div>
                 </div>
 
-                {/* Row 3: Requirement */}
+                {/* Requirement */}
                 <div>
-                  <label className="block text-[11px] font-normal text-[#4D4846] mb-1">
+                  <label className="block text-[16px] text-[#1A1A1A]/75 mb-1.5">
                     Your requirement
                   </label>
-                  <input
-                    type="text"
-                    placeholder="Asset type, location & funding requirement"
+                  <textarea
+                    rows={3}
                     value={requirement}
                     onChange={(e) => setRequirement(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-white/90 border border-[#DBD6CB] text-xs text-[#1A1816] placeholder-[#A8A49C] focus:outline-none focus:border-[#1A1816] focus:bg-white transition-all duration-200"
+                    placeholder={
+                      division === "property"
+                        ? "Asset type, location, loan amount, or tender mandate details..."
+                        : "Commodity (Cumin, Urad, Tuwar), grade, volume required, destination..."
+                    }
+                    className="w-full p-4 rounded-[14px] bg-white border border-[#D5D0C5] text-[18px] text-[#1A1A1A] placeholder-[#1A1A1A]/40 focus:outline-none focus:border-[#111111] transition-colors resize-none"
                   />
                 </div>
 
-                {/* Submit Pill Button with Duna ease */}
-                <div className="pt-2">
-                  <button
-                    type="submit"
-                    className="group w-full py-3 rounded-full bg-[#1A1816] hover:bg-black text-white text-xs sm:text-[13px] font-medium transition-all duration-300 duna-ease flex items-center justify-center gap-1.5 shadow-sm hover:shadow-md cursor-pointer"
-                  >
-                    <span>Discuss on WhatsApp</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 duna-ease group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </button>
-                </div>
+                {/* Submit button */}
+                <button
+                  type="submit"
+                  className="w-full h-[56px] bg-[#111111] hover:bg-[#333333] text-white text-[17px] rounded-full transition-colors flex items-center justify-center gap-2 shadow-sm min-h-[44px] cursor-pointer group"
+                >
+                  <InteractiveIcon icon={MessageCircle} mode="hover" size={19} />
+                  <span>Discuss on WhatsApp</span>
+                  <InteractiveIcon
+                    icon={ArrowRight}
+                    mode="hover"
+                    size={16}
+                    className="transition-transform group-hover:translate-x-1"
+                  />
+                </button>
 
-                {/* Sub-helper text */}
-                <p className="text-[11px] text-[#898683] text-center pt-1 font-normal">
+                <p className="text-[14px] text-[#1A1A1A]/60 text-center">
                   Share your requirement and supporting documents directly with our desk.
                 </p>
               </form>
